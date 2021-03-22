@@ -64,7 +64,8 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        Log.i("MainActivity", "onCreate Called")
+        Log.i("MainActivity", "onCreate Called")
 
 
         // Use Data Binding to get reference to the views
@@ -149,5 +150,8 @@ class MainActivity : AppCompatActivity() {
         return super.onOptionsItemSelected(item)
     }
 
-
+    override fun onStart() {
+        super.onStart()
+        Log.i("MainActivity", "onStart Called")
+    }
 }
