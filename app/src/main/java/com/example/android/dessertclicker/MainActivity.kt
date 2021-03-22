@@ -28,6 +28,8 @@ import androidx.databinding.DataBindingUtil
 import com.example.android.dessertclicker.databinding.ActivityMainBinding
 import timber.log.Timber
 
+
+
 class MainActivity : AppCompatActivity() {
 
     private var revenue = 0
@@ -36,8 +38,6 @@ class MainActivity : AppCompatActivity() {
     // Contains all the views
     private lateinit var dessertTimer: DessertTimer
     private lateinit var binding: ActivityMainBinding
-
-    /** Dessert Data **/
 
     /**
      * Simple data class that represents a dessert. Includes the resource id integer associated with
@@ -62,6 +62,7 @@ class MainActivity : AppCompatActivity() {
             Dessert(R.drawable.nougat, 5000, 16000),
             Dessert(R.drawable.oreo, 6000, 20000)
     )
+
     private var currentDessert = allDesserts[0]
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -74,7 +75,7 @@ class MainActivity : AppCompatActivity() {
         binding.dessertButton.setOnClickListener {
             onDessertClicked()
         }
-        dessertTimer = DessertTimer()
+        dessertTimer = DessertTimer(this.lifecycle)
 
         // Set the TextViews to the right values
         binding.revenue = revenue
@@ -84,10 +85,11 @@ class MainActivity : AppCompatActivity() {
         binding.dessertButton.setImageResource(currentDessert.imageId)
     }
 
+
+
     override fun onStart() {
         super.onStart()
         Timber.i("onStart Called")
-        dessertTimer.startTimer()
     }
 
     override fun onResume() {
@@ -103,7 +105,6 @@ class MainActivity : AppCompatActivity() {
     override fun onStop() {
         super.onStop()
         Timber.i("onStop Called")
-        dessertTimer.stopTimer()
     }
 
     override fun onDestroy() {
